@@ -1,0 +1,19 @@
+<div class="container row">
+  <div class="col-md-12">
+      <h1>Upload Image</h1>
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+      <input type="file" (change)="onFileChanged($event)">
+  </div>
+  <div class="col-md-6">
+      <input type="button" (click)="onUpload()" value="upload">
+  </div>
+</div>
+<div class="container row">
+  <div class="col-md-6">
+      <input class="form-control" type="text" id="name" placeholder="Flower name" [(ngModel)]="flower.name">
+      <input class="form-control" type="text" id="type" placeholder="Flower type" [(ngModel)]="flower.type">
+  </div>
+</div>

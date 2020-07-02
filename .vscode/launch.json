@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FlowershopApplication<flowershop>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.demo.flowershop.FlowershopApplication",
+            "projectName": "flowershop",
+            "args": ""
+        }
+    ]
+}
