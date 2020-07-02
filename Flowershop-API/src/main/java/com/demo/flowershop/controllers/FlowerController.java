@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.lang.RuntimeException;
 
 import com.demo.flowershop.dtos.FlowerDto;
 import com.demo.flowershop.models.FlowerModel;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import javassist.tools.web.BadHttpRequest;
 
 @RestController
 @RequestMapping("/flower")
@@ -41,7 +44,7 @@ public class FlowerController {
         flower.setName(name);
         flower.setType(type);
 
-        flowerRepository.save(convertToEntity(flower));
+        flowerRepository.saveAndFlush(convertToEntity(flower));
     }
 
     @GetMapping
@@ -50,20 +53,12 @@ public class FlowerController {
         return Arrays.asList(convertListToDto(flowers.toArray(new FlowerModel[flowers.size()])));
     }
 
-    @GetMapping("/{flowerName}")
-    public FlowerDto getFlower(@PathVariable("flowerName") String flowerName){
-        Optional <FlowerModel> retrievedFlower = flowerRepository.findByName(flowerName);
-        FlowerDto flowerDto = null;
+    @GetMapping("/{id}")
+    public FlowerDto getFlower(@PathVariable("id") long id) throws Exception {
+        FlowerModel retrievedFlower = flowerRepository.findById(id)
+        .orElseThrow(() -> new Exception("Flower not found"));
 
-        if(retrievedFlower.isPresent()){
-            flowerDto = convertToDto(retrievedFlower.get());
-            logger.info("Return Flower: "+flowerDto.getName()+" "+flowerDto.getType());
-        }
-        else{
-            logger.warning("Could not retrieve flower from database");
-        }
-
-		return flowerDto;
+        return convertToDto(retrievedFlower);
     }
 
     private FlowerDto convertToDto(FlowerModel flower){

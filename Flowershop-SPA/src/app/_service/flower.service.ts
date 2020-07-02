@@ -12,8 +12,12 @@ export class FlowerService {
     this.baseUrl = 'http://localhost:8080/flower';
   }
 
-  public getFlower(flowerName: string) {
-    return this.http.get<Flower>(this.baseUrl + '/' + flowerName);
+  public getFlower(flowerId: any) {
+    return this.http.get<Flower>(this.baseUrl + '/' + flowerId);
+  }
+
+  public getFlowers(){
+    return this.http.get<Flower[]>(this.baseUrl);
   }
 
   public uploadFlower(flower: any) {
