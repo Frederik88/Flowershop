@@ -6,11 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-@Entity
 public class FlowerDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String type;

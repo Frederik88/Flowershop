@@ -1,5 +1,7 @@
 package com.demo.flowershop.controllers;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -42,6 +44,12 @@ public class FlowerController {
         flowerRepository.save(convertToEntity(flower));
     }
 
+    @GetMapping
+    public List<FlowerDto> getFlowers(){
+        List<FlowerModel> flowers = flowerRepository.findAll();
+        return Arrays.asList(convertListToDto(flowers.toArray(new FlowerModel[flowers.size()])));
+    }
+
     @GetMapping("/{flowerName}")
     public FlowerDto getFlower(@PathVariable("flowerName") String flowerName){
         Optional <FlowerModel> retrievedFlower = flowerRepository.findByName(flowerName);
@@ -65,4 +73,9 @@ public class FlowerController {
     private FlowerModel convertToEntity(FlowerDto flowerDto){
         return modelmapper.map(flowerDto, FlowerModel.class);
     }
+
+    private FlowerDto [] convertListToDto(FlowerModel[] flowers){
+        return modelmapper.map(flowers, FlowerDto[].class);
+    }
+
 }
