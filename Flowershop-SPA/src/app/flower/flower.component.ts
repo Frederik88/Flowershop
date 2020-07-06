@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FlowerService } from '../_service/flower.service';
+import { Flower } from '../_model/flower.model';
 
 @Component({
   selector: 'app-flower',
@@ -7,24 +8,10 @@ import { FlowerService } from '../_service/flower.service';
   styleUrls: ['./flower.component.css']
 })
 export class FlowerComponent implements OnInit {
-  flower: any = {}
+  @Input() flower: Flower;
 
-  constructor(private flowerService: FlowerService) { }
+  constructor() { }
 
-  public onFileChanged(event) {
-    this.flower.img = event.target.files[0];
-  }
-
-  public onUpload() {
-    console.log(this.flower.img);
-
-    const uploadImageData = new FormData();
-    uploadImageData.append('name', this.flower.name);
-    uploadImageData.append('type', this.flower.type);
-    uploadImageData.append('imageFile', this.flower.img);
-
-    this.flowerService.uploadFlower(uploadImageData);
-  }
 
   ngOnInit() {
   }
