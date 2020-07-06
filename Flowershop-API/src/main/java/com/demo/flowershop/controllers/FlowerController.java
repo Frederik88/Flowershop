@@ -39,10 +39,11 @@ public class FlowerController {
 
     @PostMapping("/upload")
     @ResponseStatus(HttpStatus.OK)
-    public void uploadFlower(@RequestParam("name") String name, @RequestParam("type") String type) {
+    public void uploadFlower(@RequestParam("name") String name, @RequestParam("type") String type, @RequestParam("image") Byte[] image) {
         FlowerDto flower = new FlowerDto();
         flower.setName(name);
         flower.setType(type);
+        flower.setImg(image);
 
         flowerRepository.saveAndFlush(convertToEntity(flower));
     }

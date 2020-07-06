@@ -7,13 +7,15 @@ public class FlowerDto {
     private long id;
     private String name;
     private String type;
+    private Byte[] img;
     
 
-    public FlowerDto(long id, String name, String type) {
+    public FlowerDto(long id, String name, String type, Byte[] img) {
         super();
         this.id = id;
         this.name = name;
         this.type = type;
+        this.img = img;
     }
     
     public FlowerDto() {
@@ -42,6 +44,14 @@ public class FlowerDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(Byte[] img) {
+        this.img = img;
     }
 
     @Override

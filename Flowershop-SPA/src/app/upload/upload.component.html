@@ -1,0 +1,9 @@
+<form #uploadForm="ngForm" class="form-signin mt-5" (ngSubmit)="upload()">
+  <input class="form-control mr-sm-2 mb-2" type="text" name="Flower Name" placeholder="Flower Name" required
+    [(ngModel)]="model.name">
+  <input class="form-control mr-sm-2 mb-2" type="text" name="Flower Type" placeholder="Flower Type" required
+    [(ngModel)]="model.type">
+  <input type="file" (change)="onFileChanged($event)" name="Flower Image" required>
+
+  <button [disabled]="!uploadForm.valid" id="login-btn" class="btn btn-md btn-block" type="submit">Upload</button>
+</form>

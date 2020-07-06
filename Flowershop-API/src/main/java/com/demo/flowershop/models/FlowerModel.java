@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class FlowerModel {
@@ -13,13 +14,16 @@ public class FlowerModel {
     private long id;
     private String name;
     private String type;
+    @Lob
+    private Byte[] img;
     
 
-    public FlowerModel(long id, String name, String type) {
+    public FlowerModel(long id, String name, String type, Byte[] img) {
         super();
         this.id = id;
         this.name = name;
         this.type = type;
+        this.img = img;
     }
     
     public FlowerModel() {
@@ -50,10 +54,20 @@ public class FlowerModel {
         this.type = type;
     }
 
+    public Byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(Byte[] img) {
+        this.img = img;
+    }
+
     @Override
     public String toString() {
         return "Flower [id=" + id + ", name=" + name + ", type=" + type + "]";
     }
+
+   
 
     
     

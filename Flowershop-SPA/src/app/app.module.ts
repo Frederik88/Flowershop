@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserListComponent } from './UserList/user-list.component';
 import { FlowerComponent } from './flower/flower.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       UserListComponent,
-      FlowerComponent
+      FlowerComponent,
+      UploadComponent
    ],
    imports: [
       BrowserModule,
