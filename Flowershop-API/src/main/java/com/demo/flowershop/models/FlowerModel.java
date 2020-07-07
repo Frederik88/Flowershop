@@ -15,10 +15,10 @@ public class FlowerModel {
     private String name;
     private String type;
     @Lob
-    private Byte[] img;
+    private byte[] img;
     
 
-    public FlowerModel(long id, String name, String type, Byte[] img) {
+    public FlowerModel(long id, String name, String type, byte[] img) {
         super();
         this.id = id;
         this.name = name;
@@ -54,11 +54,11 @@ public class FlowerModel {
         this.type = type;
     }
 
-    public Byte[] getImg() {
+    public byte[] getImg() {
         return img;
     }
 
-    public void setImg(Byte[] img) {
+    public void setImg(byte[] img) {
         this.img = img;
     }
 

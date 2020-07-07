@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { FlowerService } from '../_service/flower.service';
 import { Flower } from '../_model/flower.model';
 
@@ -9,11 +9,25 @@ import { Flower } from '../_model/flower.model';
 })
 export class FlowerComponent implements OnInit {
   @Input() flower: Flower;
+  image: any;
 
-  constructor() { }
+
+  constructor(private flowerService: FlowerService, private ngZone: NgZone) { }
 
 
   ngOnInit() {
   }
 
+  delete() {
+    if (this.flower) {
+      this.flowerService.deleteFlower(this.flower.id).subscribe(
+        () => console.log('Flower successfully deleted'),
+        (error) => console.log('error', error),
+        () => {
+          this.ngZone.run(() => {
+          });
+        }
+      );
+    }
+  }
 }

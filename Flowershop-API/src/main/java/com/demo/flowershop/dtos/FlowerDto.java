@@ -7,10 +7,10 @@ public class FlowerDto {
     private long id;
     private String name;
     private String type;
-    private Byte[] img;
+    private byte[] img;
     
 
-    public FlowerDto(long id, String name, String type, Byte[] img) {
+    public FlowerDto(long id, String name, String type, byte[] img) {
         super();
         this.id = id;
         this.name = name;
@@ -46,11 +46,11 @@ public class FlowerDto {
         this.type = type;
     }
 
-    public Byte[] getImg() {
+    public byte[] getImg() {
         return img;
     }
 
-    public void setImg(Byte[] img) {
+    public void setImg(byte[] img) {
         this.img = img;
     }
 

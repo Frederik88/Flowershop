@@ -13,7 +13,7 @@ export class FlowerService {
     this.baseUrl = 'http://localhost:8080/flower';
   }
 
-  public getFlower(flowerId: any) {
+  public getFlower(flowerId: any): Observable<Flower> {
     return this.http.get<Flower>(this.baseUrl + '/' + flowerId);
   }
 
@@ -21,11 +21,19 @@ export class FlowerService {
     return this.http.get<Flower[]>(this.baseUrl);
   }
 
-  public uploadFlower(flower: any) {
+  public deleteFlower(flowerId: any){
+    return this.http.get(this.baseUrl + '/delete/' + flowerId);
+  }
 
-    return this.http.post(this.baseUrl + '/upload', flower, { observe: 'response' })
+  public uploadFlower(flower: any) {
+    const uploadData = new FormData();
+    uploadData.append('name', flower.name);
+    uploadData.append('type', flower.type);
+    uploadData.append('image', flower.image);
+
+    return this.http.post(this.baseUrl + '/upload', uploadData, { observe: 'response' })
       .subscribe((response) => {
-        console.log(flower);
+        console.log(uploadData);
         if (response.status === 200) {
           console.log('Image upload successfully');
         }

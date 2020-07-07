@@ -5,14 +5,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserListComponent } from './UserList/user-list.component';
 import { FlowerComponent } from './flower/flower.component';
 import { UploadComponent } from './upload/upload.component';
+import { FlowerService } from './_service/flower.service';
 
 @NgModule({
    declarations: [
       AppComponent,
-      UserListComponent,
       FlowerComponent,
       UploadComponent
    ],
@@ -22,7 +21,8 @@ import { UploadComponent } from './upload/upload.component';
       HttpClientModule,
       FormsModule
    ],
-   providers: [],
+   providers: [
+   ],
    bootstrap: [
       AppComponent
    ]

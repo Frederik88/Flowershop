@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FlowerService } from '../_service/flower.service';
 
 @Component({
   selector: 'app-upload',
@@ -10,11 +11,11 @@ export class UploadComponent implements OnInit {
   model: any = {};
   selectedFile: File;
 
-  constructor() { }
+  constructor(private flowerService: FlowerService) { }
 
   upload() {
       this.model.image = this.selectedFile;
-      this.http.post()
+      this.flowerService.uploadFlower(this.model);
   }
 
   onFileChanged(event) {

@@ -17,7 +17,6 @@ public class UserDto {
         super();
     }
 
-
     public long getId() {
         return id;
     }
