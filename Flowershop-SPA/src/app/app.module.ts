@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { FlowerComponent } from './flower/flower.component';
 import { UploadComponent } from './upload/upload.component';
 import { FlowerService } from './_service/flower.service';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       FlowerComponent,
-      UploadComponent
+      UploadComponent,
+      UserComponent
    ],
    imports: [
       BrowserModule,
@@ -21,8 +23,7 @@ import { FlowerService } from './_service/flower.service';
       HttpClientModule,
       FormsModule
    ],
-   providers: [
-   ],
+   providers: [],
    bootstrap: [
       AppComponent
    ]

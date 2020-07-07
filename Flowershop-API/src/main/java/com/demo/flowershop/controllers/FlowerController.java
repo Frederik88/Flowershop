@@ -2,11 +2,8 @@ package com.demo.flowershop.controllers;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import java.io.IOException;
-import java.lang.RuntimeException;
 
 import com.demo.flowershop.dtos.FlowerDto;
 import com.demo.flowershop.models.FlowerModel;
@@ -40,7 +37,7 @@ public class FlowerController {
 
     @PostMapping("/upload")
     @ResponseStatus(HttpStatus.OK)
-    public void uploadFlower(@RequestParam("name") String name, @RequestParam("type") String type,
+    public void addFlower(@RequestParam("name") String name, @RequestParam("type") String type,
             @RequestParam("image") MultipartFile image) throws Exception {
         FlowerDto flower = new FlowerDto();
         String fileName = org.springframework.util.StringUtils.cleanPath(image.getOriginalFilename());

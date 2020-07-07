@@ -1,0 +1,21 @@
+<div *ngIf="!loggedIn()">
+<form #loginForm="ngForm" class="form-signin mt-5" (ngSubmit)="login()">
+  <input class="form-control mr-sm-2 mb-2" type="text" name="Username" placeholder="Username" required
+    [(ngModel)]="model.name">
+  <input class="form-control mr-sm-2 mb-2" type="password" name="Password" placeholder="Password" required
+    [(ngModel)]="model.password">
+  <button [disabled]="!loginForm.valid" id="login-btn" class="btn btn-md btn-block" type="submit">Login</button>
+</form>
+</div>
+<div *ngIf="!loggedIn() && !userExists()">
+  <form #createForm="ngForm" class="form-signin mt-5" (ngSubmit)="create()">
+    <input class="form-control mr-sm-2 mb-2" type="text" name="Username" placeholder="Username" required
+      [(ngModel)]="model.name">
+    <input class="form-control mr-sm-2 mb-2" type="email" name="Email" placeholder="Email" required
+      [(ngModel)]="model.email">
+      <input class="form-control mr-sm-2 mb-2" type="password" name="Password" placeholder="Password" required
+      [(ngModel)]="model.password">
+    <button [disabled]="!createForm.valid" id="login-btn" class="btn btn-md btn-block" type="submit">Create User</button>
+  </form>
+  </div>
+
