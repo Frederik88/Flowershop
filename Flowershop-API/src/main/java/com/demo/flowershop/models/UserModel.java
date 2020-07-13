@@ -13,12 +13,14 @@ public class UserModel {
     private long id;
     private String name;
     private String email;
+    private String password;
 
-    public UserModel(long id, String name, String email) {
+    public UserModel(long id, String name, String email, String password) {
         super();
         this.id = id;
         this.name = name;
         this.email = email;
+        this.password = password;
     }
     
     public UserModel() {
@@ -50,6 +52,14 @@ public class UserModel {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -58,4 +68,6 @@ public class UserModel {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+   
 }
