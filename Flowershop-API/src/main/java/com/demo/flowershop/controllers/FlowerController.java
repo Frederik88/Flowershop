@@ -24,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/flower")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin()
 public class FlowerController {
 
     @Autowired

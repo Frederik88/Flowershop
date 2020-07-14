@@ -16,7 +16,7 @@ export class LoginService {
   }
 
   login(user: User) {
-    this.httpClient.post<Observable<boolean>>(this.baseUrl, {
+    this.httpClient.post(this.baseUrl + '/login', {
       userName: user.username,
       password: user.password
     }).subscribe(isValid => {

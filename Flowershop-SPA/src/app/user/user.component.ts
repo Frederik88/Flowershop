@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_service/User.service';
+import { LoginService } from '../_service/login.service';
 
 @Component({
   selector: 'app-user',
@@ -9,13 +10,13 @@ import { UserService } from '../_service/User.service';
 export class UserComponent implements OnInit {
   model: any = {};
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private loginService: LoginService) { }
 
   public ngOnInit() {
   }
 
   public loggedIn() {
-    return true;
+    return false;
   }
 
   public userExists() {
@@ -34,7 +35,7 @@ export class UserComponent implements OnInit {
   }
 
   public login() {
-    
+    this.loginService.login(this.model);
   }
 
 }

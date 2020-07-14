@@ -12,13 +12,15 @@ import com.demo.flowershop.repositories.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin()
 public class UserController {
 
     @Autowired
@@ -27,6 +29,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     private static Logger logger = Logger.getLogger("FlowerController.java");
 
     @GetMapping("/users")
@@ -34,37 +39,10 @@ public class UserController {
         return userRepository.findAll();
     }
 
-    /*@GetMapping("/user")
-    public @ResponseBody UserDto getUser(@RequestParam long id) throws Exception {
-        UserModel user = userRepository.findById(id)
-        .orElseThrow(() -> new Exception("User not found"));
-
-        return convertToDto(user);
-    }*/
-
-    @PostMapping("/user")
-    public UserModel login(@RequestBody UserDto userDto) throws Exception {
-        UserModel user = convertToEntity(userDto);
-        return userRepository.findByNameContains(user.getName())
-        .orElseThrow(() -> new Exception("User not found"));
-    }
-
-    @GetMapping("/login")
-    public Principal user(HttpServletRequest request) {
-        String authToken = request.getHeader("Authorization")
-          .substring("Basic".length()).trim();
-        return () ->  new String(Base64.getDecoder()
-          .decode(authToken));
-    }
-
-    @PostMapping("/add")
-    @ResponseStatus(HttpStatus.OK)
-    public void addNewUser(@RequestParam String name, @RequestParam String email, @RequestParam String password) {
-        UserDto user = new UserDto();
-        user.setName(name);
-        user.setPassword(password);
-        user.setEmail(email);
-        userRepository.save(convertToEntity(user));
+    @PostMapping("/sign-up")
+    public void signUp(@RequestBody UserDto user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        this.userRepository.save(convertToEntity(user));
     }
 
     @PostMapping("/delete")

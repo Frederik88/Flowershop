@@ -13,9 +13,16 @@ export class AppComponent implements OnInit {
   constructor(private flowerService: FlowerService) { }
 
   ngOnInit(): void {
+    /*
     this.flowerService.getFlowers().subscribe(data => {
-      this.flowers = data;
+      if (data) {
+        this.flowers = data;
+      }
+      else {
+        console.log('No flowers available');
+      }
     });
+    */
   }
 }
 
