@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlowerComponent } from './flower/flower.component';
 import { UploadComponent } from './upload/upload.component';
-import { FlowerService } from './_service/flower.service';
+import { NavComponent } from './nav/nav.component';
 import { UserComponent } from './user/user.component';
 import { TokenInterceptorService } from './_service/TokenInterceptor.service';
 
@@ -16,6 +16,7 @@ import { TokenInterceptorService } from './_service/TokenInterceptor.service';
       AppComponent,
       FlowerComponent,
       UploadComponent,
+      NavComponent,
       UserComponent
    ],
    imports: [
@@ -25,9 +26,9 @@ import { TokenInterceptorService } from './_service/TokenInterceptor.service';
       FormsModule
    ],
    providers: [{
-         provide: HTTP_INTERCEPTORS,
-         useClass: TokenInterceptorService,
-         multi: true
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
    }],
    bootstrap: [
       AppComponent

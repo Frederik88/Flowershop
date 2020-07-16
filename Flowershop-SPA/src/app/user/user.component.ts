@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_service/User.service';
 import { LoginService } from '../_service/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -12,18 +13,10 @@ export class UserComponent implements OnInit {
   loginExists: boolean;
   userName: any;
 
-  constructor(private userService: UserService, private loginService: LoginService) { }
+  constructor(private userService: UserService, private loginService: LoginService, private router: Router) { }
 
   public ngOnInit() {
     this.loggedIn();
-    this.getUserNameFromToken();
-  }
-
-  public getUserNameFromToken() {
-    const token = this.loginService.getToken();
-    if (token) {
-      this.userName = token.sub;
-    }
   }
 
   public loggedIn() {
@@ -46,7 +39,7 @@ export class UserComponent implements OnInit {
   }
 
   public login() {
-    console.log(this.model);
     this.loginService.login(this.model);
+    this.router.navigate(['/upload']);
   }
 }
