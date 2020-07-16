@@ -19,7 +19,7 @@ export class UserService {
   }
 
   public createUser(user: User) {
-    return this.http.post<User>(this.baseUrl + '/add', user);
+    return this.http.post<User>(this.baseUrl + '/sign-up', user);
   }
 
   public deleteUser(id: any) {

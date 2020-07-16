@@ -61,13 +61,14 @@
         <app-user></app-user>
       </div>
     </section>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row" *ngIf="flowers?.length > 0">
-          <div *ngFor="let flower of flowers">
-            <div class="col-md-8">
-              <app-flower [flower]="flower"></app-flower>
+    <div *ngIf="loginExists">
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row" *ngIf="flowers?.length > 0">
+            <div *ngFor="let flower of flowers">
+              <div class="col-md-8">
+                <app-flower [flower]="flower"></app-flower>
+              </div>
             </div>
           </div>
         </div>

@@ -9,14 +9,22 @@ import { LoginService } from '../_service/login.service';
 })
 export class UserComponent implements OnInit {
   model: any = {};
+  loginExists: boolean;
+  userName: any;
 
   constructor(private userService: UserService, private loginService: LoginService) { }
 
   public ngOnInit() {
+    this.loggedIn();
+    this.getUserNameFromToken();
+  }
+
+  public getUserNameFromToken(){
+    this.userName = this.loginService.getToken().sub;
   }
 
   public loggedIn() {
-    return false;
+    this.loginExists = this.loginService.loggedIn();
   }
 
   public userExists() {
@@ -35,7 +43,7 @@ export class UserComponent implements OnInit {
   }
 
   public login() {
+    console.log(this.model);
     this.loginService.login(this.model);
   }
-
 }

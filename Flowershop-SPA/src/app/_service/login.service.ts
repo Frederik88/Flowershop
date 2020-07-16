@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../_model/user.model';
-import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -10,25 +11,32 @@ import { Router } from '@angular/router';
 export class LoginService {
 
   private baseUrl: string;
+  jwtHelper = new JwtHelperService();
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.baseUrl = 'http://localhost:8080/user';
+    this.baseUrl = 'http://localhost:8080/';
   }
 
-  login(user: User) {
-    this.httpClient.post(this.baseUrl + '/login', {
-      userName: user.username,
-      password: user.password
-    }).subscribe(isValid => {
-      if (isValid) {
-        sessionStorage.setItem(
-          'token',
-          btoa(user.username + ':' + user.password)
-        );
-        this.router.navigate(['']);
-      } else {
-        alert("Authentication failed.")
-      }
-    });
+  loggedIn() {
+    const token = localStorage.getItem('token');
+    return !this.jwtHelper.isTokenExpired(token);
+  }
+
+  getToken(){
+    return this.jwtHelper.decodeToken(localStorage.getItem('token'));
+  }
+
+  logout() {
+    localStorage.clear();
+  }
+
+  login(model: any) {
+    return this.httpClient.post<any>(this.baseUrl + 'login', model, { observe: 'response' })
+      .subscribe(resp => {
+        if (resp) {
+          const token = resp.headers.get('Authorization');
+          localStorage.setItem('token', token);
+        }
+      });
   }
 }
