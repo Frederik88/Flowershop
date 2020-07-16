@@ -19,8 +19,11 @@ export class UserComponent implements OnInit {
     this.getUserNameFromToken();
   }
 
-  public getUserNameFromToken(){
-    this.userName = this.loginService.getToken().sub;
+  public getUserNameFromToken() {
+    const token = this.loginService.getToken();
+    if (token) {
+      this.userName = token.sub;
+    }
   }
 
   public loggedIn() {
