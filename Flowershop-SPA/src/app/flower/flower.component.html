@@ -1,10 +1,11 @@
-<div *ngIf="flower" class="card mb-3 box-shadow">
+<div *ngIf="flower && price" class="card mb-3 box-shadow">
   <img class="card-img-top" src="data:image/JPEG;base64,{{flower.img}}" width="200" height="200"
     data-holder-rendered="true">
   <div class="card-body">
     <div class="card-text">
       <p>Flower Name: {{flower.name}}</p>
       <p>Flower Type: {{flower.type}}</p>
+      <p>Price: {{this.price}}</p>
     </div>
     <div>
       <button [disabled]="!flower.id" id="delete-btn" class="btn btn-md btn-block" (click)="this.delete()">Delete
