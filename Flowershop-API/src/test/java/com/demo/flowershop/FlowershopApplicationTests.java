@@ -39,15 +39,9 @@ class FlowershopApplicationTests {
 	}
 
 	@Test
-	public void flowerIdReturnOk() throws Exception{
+	public void unauthorizedReturnForbidden() throws Exception{
 		this.mockMvc.perform(get("/flower/{id}", "id", 1))
-					.andExpect(status().isOk());
-	}
-
-	@Test
-	public void flowerIdReturnInternalServerError() throws Exception{
-		this.mockMvc.perform(get("/flower/{id}", "id", 12345))
-					.andExpect(status().isBadRequest());
+					.andExpect(status().isForbidden());
 	}
 
 }
