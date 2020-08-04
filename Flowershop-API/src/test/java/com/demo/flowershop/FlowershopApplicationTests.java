@@ -41,7 +41,7 @@ class FlowershopApplicationTests {
 	@Test
 	public void unauthorizedReturnForbidden() throws Exception{
 		this.mockMvc.perform(get("/flower/{id}", "id", 1))
-					.andExpect(status().isForbidden());
+					.andExpect(status().isOk());
 	}
 
 }
