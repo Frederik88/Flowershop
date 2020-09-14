@@ -2,14 +2,12 @@ package com.demo.flowershop.dtos;
 
 public class UserDto {
 
-    private long id;
     private String name;
     private String email;
     private String password;
 
-    public UserDto(long id, String name, String email, String password) {
+    public UserDto(String name, String password, String email) {
         super();
-        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
@@ -17,14 +15,6 @@ public class UserDto {
     
     public UserDto() {
         super();
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -54,7 +44,6 @@ public class UserDto {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 '}';

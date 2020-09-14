@@ -34,6 +34,7 @@ export class LoginService {
     return this.httpClient.post<any>(this.baseUrl + 'login', model, { observe: 'response' })
       .subscribe(resp => {
         if (resp) {
+          console.log(model);
           const token = resp.headers.get('Authorization');
           localStorage.setItem('token', token);
         }
